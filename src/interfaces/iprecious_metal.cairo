@@ -1,5 +1,6 @@
 use starknet::ContractAddress;
 
+<<<<<<< HEAD
 // #[derive(Drop, Serde)]
 // struct MetalAssetDetails {
 //     asset_id: u256,
@@ -25,13 +26,15 @@ use starknet::ContractAddress;
 //     votes_against: u256,
 // }
 
+=======
+>>>>>>> b1327f8c57865d3707068a0508dc50dcd0168e7f
 use rwax::structs::metal_property::MetalAssetDetails;
 use rwax::structs::metal_proposal::MetalProposal;
 
 
 #[starknet::interface]
 pub trait IPreciousMetalsFractional<TContractState> {
-    // ========== Asset Management ==========
+    // ========== Asset Management Interface ==========
     fn add_metal_asset(
         ref self: TContractState,
         metal_type: felt252,
@@ -48,17 +51,17 @@ pub trait IPreciousMetalsFractional<TContractState> {
     fn get_asset_details(self: @TContractState, asset_id: u256) -> MetalAssetDetails;
     fn get_vault_operator(self: @TContractState, asset_id: u256) -> ContractAddress;
 
-    // ========== Price & Redemption ==========
+    // ========== Price & Redemption Interface ==========
     fn update_spot_price(ref self: TContractState, asset_id: u256, new_price: u256);
     fn request_physical_redemption(
         ref self: TContractState, asset_id: u256, grams_to_redeem: u256, shipping_address: felt252,
     );
 
-    // ========== Revenue Distribution ==========
+    // ========== Revenue Distribution Interface ==========
     fn distribute_storage_fee_refund(ref self: TContractState, asset_id: u256, amount: u256);
     fn claim_metal_revenue(ref self: TContractState, asset_id: u256);
 
-    // ========== Governance ==========
+    // ========== Governance Interface ==========
     fn create_metal_proposal(
         ref self: TContractState,
         asset_id: u256,
@@ -72,6 +75,7 @@ pub trait IPreciousMetalsFractional<TContractState> {
     fn execute_metal_proposal(ref self: TContractState, proposal_id: u256);
     fn get_metal_proposal(self: @TContractState, proposal_id: u256) -> MetalProposal;
 
-    // ========== Asset Liquidation ==========
+    // ========== Asset Liquidation Interface ==========
     fn trigger_bulk_sale(ref self: TContractState, asset_id: u256);
 }
+
