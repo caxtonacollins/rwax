@@ -27,6 +27,53 @@ Target Users are:
 Currently RWAx is pioneering fractional 
 ownership in the Starknet ecosystem. 
 
+# Target Users
+
+- Retail Investors: Individuals investing with small capital.
+- Asset Owners: Tokenize and sell asset fractions.
+- DeFi Users: Access yield-generating RWAs within DeFi protocols.
+
+# Technical Architecture
+
+| Component                    | Description                                                                                          |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **RWA Token Factory**        | Smart contract to tokenize real-world assets as ERC-721/ERC-1155 or ERC-20 wrapped fractional units. |
+| **Fractionalization Module** | Allows splitting of asset tokens into fungible units for shared ownership.                           |
+| **Marketplace Protocol**     | Decentralized exchange for listing and trading fractionalized assets.                                |
+| **Transfer Protocol**        | Starknet-native, optimized protocol for seamless asset transfer.                                     |
+| **Valuation Oracle**         | Oracle that feeds in external pricing data from Chainlink + DEX TWAPs.                               |
+| **Liquidity Pools**          | AMM-based pools that enable swapping and liquidity provision for fractional tokens.                  |
+| **Access Control Layer**     | RBAC or NFT gating to handle permissions (e.g. only verified tokenizers can mint).                   |
+
+# Technology Stack
+
+- Starknet (Cairo) – ZK-rollup scalability and cost-efficiency.
+- Foundry – Smart contract development and testing.
+- Chainlink – Real-world price feeds.
+- IPFS/Filecoin – Asset documentation and legal proof storage.
+- The Graph – Indexing for on-chain queries.
+
+# Roadmap
+
+| Phase                                       | Timeline  | Milestones                                                                                         |
+| ------------------------------------------- | --------- | -------------------------------------------------------------------------------------------------- |
+|  Phase 1: MVP Design & Architecture         | Week 1    | - Define architecture<br>- Smart contract design for RWA tokenization<br>- Technical documentation |
+|  Phase 2: Core Smart Contracts              | Week 2–3  | - RWA token factory<br>- Fractionalization module<br>- Initial tests using Foundry                 |
+|  Phase 3: Marketplace + Transfer Protocol   | Week 4    | - Develop DEX-style marketplace<br>- Implement asset transfer logic                                |
+|  Phase 4: Oracle + Pricing Mechanism        | Week 5    | - Integrate Chainlink oracle<br>- Write valuation logic for fractional assets                      |
+|  Phase 5: Testing & Audits                  | Week 6    | - Unit + fuzz tests<br>- Initial audits or peer reviews                                            |
+|  Phase 6: Frontend + Indexing               | Week 7–8  | - Build basic UI with React<br>- Integrate The Graph for frontend queries                          |
+|  Phase 7: Public Testnet Launch             | Week 9–10 | - Deploy on Starknet testnet<br>- Community testing                                                |
+|  Phase 8: Audit + Mainnet Launch            | TBD       | - Full security audit<br>- Mainnet deployment                                                      |
+
+# How It Works
+
+- Asset Tokenization: A verified asset owner uploads documents and tokenizes their asset.
+- Fractionalization: The token is split into ERC-20 fractions representing ownership shares.
+- Marketplace Listing: These tokens can be listed in the RWAx DEX or paired with stablecoins for liquidity.
+- Investor Interaction: Users purchase fractions, gaining exposure to the asset.
+- Price Updates: Pricing oracle ensures real-world valuation is reflected on-chain.
+- Ownership Transfers: When sold, ownership fractions are updated and verified via the Starknet transfer protocol.
 
 # Contributing to RWAx
 
@@ -62,3 +109,7 @@ Your contributions makes this project better — whether it's fixing a bug, addi
 5. **Open a Pull Request with a clear description.**
 
 6. **A maintainer will review your PR and merger, or you may be asked to make changes.**
+
+# Acknowledgments
+
+This project is inspired by the growing demand for real-world asset access and the potential of zero-knowledge technology to unlock new opportunities for decentralized ownership.

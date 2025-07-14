@@ -1,29 +1,33 @@
 use starknet::ContractAddress;
 
-#[derive(Drop, Serde)]
-struct MetalAssetDetails {
-    asset_id: u256,
-    metal_type: felt252, // "GOLD", "SILVER", "PLATINUM"
-    purity: u8, // 99.9% = 999
-    weight_grams: u256, // Total weight in grams
-    vault_location: felt252, // Physical storage address
-    assay_report_uri: felt252, // PDF/JSON link
-    total_shares: u256,
-    share_price: u256,
-    current_spot_price: u256 // Price per gram in USD (updated via oracle)
-}
+// #[derive(Drop, Serde)]
+// struct MetalAssetDetails {
+//     asset_id: u256,
+//     metal_type: felt252, // "GOLD", "SILVER", "PLATINUM"
+//     purity: u8, // 99.9% = 999
+//     weight_grams: u256, // Total weight in grams
+//     vault_location: felt252, // Physical storage address
+//     assay_report_uri: felt252, // PDF/JSON link
+//     total_shares: u256,
+//     share_price: u256,
+//     current_spot_price: u256 // Price per gram in USD (updated via oracle)
+// }
 
-#[derive(Drop, Serde)]
-struct MetalProposal {
-    asset_id: u256,
-    description: felt252, // "SELL_50_PERCENT", "CHANGE_VAULT"
-    value: u256, // Amount in grams/USD
-    recipient: ContractAddress, // Target address for action
-    voting_end_time: u64,
-    executed: bool,
-    votes_for: u256,
-    votes_against: u256,
-}
+// #[derive(Drop, Serde)]
+// struct MetalProposal {
+//     asset_id: u256,
+//     description: felt252, // "SELL_50_PERCENT", "CHANGE_VAULT"
+//     value: u256, // Amount in grams/USD
+//     recipient: ContractAddress, // Target address for action
+//     voting_end_time: u64,
+//     executed: bool,
+//     votes_for: u256,
+//     votes_against: u256,
+// }
+
+use rwax::structs::metal_property::MetalAssetDetails;
+use rwax::structs::metal_proposal::MetalProposal;
+
 
 #[starknet::interface]
 pub trait IPreciousMetalsFractional<TContractState> {
