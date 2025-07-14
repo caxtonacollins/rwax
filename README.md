@@ -24,14 +24,7 @@ Target Users are:
 - Property Owners: Those who want to tokenize and sell portions of their assets.
 - DeFi Enthusiasts: Users interested in yield-bearing RWAs.
 
-Currently RWAx is pioneering fractional 
-ownership in the Starknet ecosystem. 
-
-# Target Users
-
-- Retail Investors: Individuals investing with small capital.
-- Asset Owners: Tokenize and sell asset fractions.
-- DeFi Users: Access yield-generating RWAs within DeFi protocols.
+Currently RWAx is pioneering fractional ownership in the Starknet ecosystem. 
 
 # Technical Architecture
 
