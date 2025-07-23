@@ -1,5 +1,5 @@
 #[starknet::contract]
-mod PreciousMetalsFractionalOwnership {
+pub mod PreciousMetalsFractionalOwnership {
      // ========== Openzeppelin ==========
     use openzeppelin::access::ownable::OwnableComponent;
     use openzeppelin::introspection::src5::SRC5Component;
@@ -159,7 +159,7 @@ mod PreciousMetalsFractionalOwnership {
 
             // Emit event
             self.asset_details.write(asset_id, details);
-             self.emit(AssetAdded { asset_id, metal_type, weight_grams, total_shares});
+            self.emit(AssetAdded { asset_id, metal_type, weight_grams, total_shares});
         }
 
         fn get_asset_details(self: @ContractState, asset_id: u256) -> MetalAssetDetails {
@@ -286,9 +286,14 @@ mod PreciousMetalsFractionalOwnership {
             );
         }
 
-        
+        fn get_metal_proposal(self: @ContractState, proposal_id: u256) -> MetalProposal {
+            let proposal_count = self.proposal_count.read();
+            assert(proposal_id <= proposal_count, 'ID exceeds proposal count');
+            assert(proposal_id != 0, 'Proposal ID must be non-zero');
 
-        
+            let metal_proposal = self.proposals.read(proposal_id.into());
+            metal_proposal
+        }
         
     }
 }
