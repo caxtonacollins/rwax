@@ -286,6 +286,17 @@ pub mod PreciousMetalsFractionalOwnership {
             );
         }
 
+        /// Retrieves a metal proposal by id.
+        ///
+        /// # Arguments
+        /// * `proposal_id` - The unique identifier of the proposal to retrieve
+        ///
+        /// # Returns
+        /// * `MetalProposal` - The proposal data associated with the given ID (Struct)
+        ///
+        /// # Panics
+        /// * If `proposal_id` exceeds the total number of proposals created
+        /// * If `proposal_id` is zero (invalid ID)
         fn get_metal_proposal(self: @ContractState, proposal_id: u256) -> MetalProposal {
             let proposal_count = self.proposal_count.read();
             assert(proposal_id <= proposal_count, 'ID exceeds proposal count');
