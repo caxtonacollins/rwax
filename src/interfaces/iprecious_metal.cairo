@@ -1,6 +1,5 @@
 use starknet::ContractAddress;
 
-<<<<<<< HEAD
 // #[derive(Drop, Serde)]
 // struct MetalAssetDetails {
 //     asset_id: u256,
@@ -26,8 +25,6 @@ use starknet::ContractAddress;
 //     votes_against: u256,
 // }
 
-=======
->>>>>>> b1327f8c57865d3707068a0508dc50dcd0168e7f
 use rwax::structs::metal_property::MetalAssetDetails;
 use rwax::structs::metal_proposal::MetalProposal;
 
@@ -59,7 +56,7 @@ pub trait IPreciousMetalsFractional<TContractState> {
 
     // ========== Revenue Distribution Interface ==========
     fn distribute_storage_fee_refund(ref self: TContractState, asset_id: u256, amount: u256);
-    fn claim_metal_revenue(ref self: TContractState, asset_id: u256);
+    // fn claim_metal_revenue(ref self: TContractState, asset_id: u256);
 
     // ========== Governance Interface ==========
     fn create_metal_proposal(
@@ -71,11 +68,11 @@ pub trait IPreciousMetalsFractional<TContractState> {
         voting_period: u64,
     );
 
-    fn cast_metal_vote(ref self: TContractState, proposal_id: u256, support: bool);
-    fn execute_metal_proposal(ref self: TContractState, proposal_id: u256);
+    // fn cast_metal_vote(ref self: TContractState, proposal_id: u256, support: bool);
+    // fn execute_metal_proposal(ref self: TContractState, proposal_id: u256);
     fn get_metal_proposal(self: @TContractState, proposal_id: u256) -> MetalProposal;
 
     // ========== Asset Liquidation Interface ==========
-    fn trigger_bulk_sale(ref self: TContractState, asset_id: u256);
+    // fn trigger_bulk_sale(ref self: TContractState, asset_id: u256);
 }
 
