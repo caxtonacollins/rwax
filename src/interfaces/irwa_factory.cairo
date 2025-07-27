@@ -1,5 +1,5 @@
 use starknet::ContractAddress;
-use rwax::structs::asset::AssetData;
+// use rwax::structs::asset::AssetData;
 
 #[starknet::interface]
 pub trait IRWAFactory<TContractState> {
@@ -8,16 +8,12 @@ pub trait IRWAFactory<TContractState> {
     /// Creates a new RWA token (ERC721 NFT) representing a real-world asset
     /// Only callable by addresses with TOKENIZER_ROLE
     fn tokenize_asset(
-        ref self: TContractState,
-        owner: ContractAddress,
-        asset_data: AssetData
+        ref self: TContractState, owner: ContractAddress, asset_data: felt252 // AssetData
     ) -> u256;
 
     /// Updates metadata for an existing asset (only by owner or authorized operator)
     fn update_asset_metadata(
-        ref self: TContractState,
-        token_id: u256,
-        new_data: AssetData
+        ref self: TContractState, token_id: u256, new_data: felt252 // AssetData
     );
 
     // ===== ACCESS CONTROL =====
@@ -31,7 +27,7 @@ pub trait IRWAFactory<TContractState> {
     // ===== VIEW FUNCTIONS =====
 
     /// Returns asset metadata for a given token ID
-    fn get_asset_data(self: @TContractState, token_id: u256) -> AssetData;
+    fn get_asset_data(self: @TContractState, token_id: u256) -> felt252; //AssetData;
 
     /// Checks if an address has TOKENIZER_ROLE
     fn has_tokenizer_role(self: @TContractState, account: ContractAddress) -> bool;
