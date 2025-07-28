@@ -1,5 +1,5 @@
 #[starknet::contract]
-pub mod rwax_factory {
+pub mod fractionalization {
     use rwax::events::factory;
     use rwax::interfaces::irwa_factory;
     use starknet::ContractAddress;
