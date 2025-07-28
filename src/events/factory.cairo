@@ -1,5 +1,5 @@
-use starknet::ContractAddress;
 use rwax::structs::asset::AssetData;
+use starknet::ContractAddress;
 
 #[derive(Drop, starknet::Event)]
 pub struct AssetTokenized {
