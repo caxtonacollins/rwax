@@ -1,7 +1,7 @@
-use rwax::structs::asset::AssetData;
 use starknet::ContractAddress;
+// use rwax::structs::asset::AssetData;
 
-#[derive(Drop, starknet::Event)]
+#[derive(Copy, Drop, starknet::Event)]
 pub struct AssetTokenized {
     #[key]
     pub token_id: u256,
@@ -9,19 +9,19 @@ pub struct AssetTokenized {
     pub owner: ContractAddress,
     #[key]
     pub asset_type: felt252,
-    pub asset_data: AssetData,
+    pub asset_data: felt252 // TODO: change to AssetData
 }
 
-#[derive(Drop, starknet::Event)]
+#[derive(Copy, Drop, starknet::Event)]
 pub struct AssetMetadataUpdated {
     #[key]
     pub token_id: u256,
     #[key]
     pub updater: ContractAddress,
-    pub new_data: AssetData,
+    pub new_data: felt252 // TODO: change to AssetData
 }
 
-#[derive(Drop, starknet::Event)]
+#[derive(Copy, Drop, starknet::Event)]
 pub struct TokenizerRoleGranted {
     #[key]
     pub account: ContractAddress,
@@ -29,7 +29,7 @@ pub struct TokenizerRoleGranted {
     pub granter: ContractAddress,
 }
 
-#[derive(Drop, starknet::Event)]
+#[derive(Copy, Drop, starknet::Event)]
 pub struct TokenizerRoleRevoked {
     #[key]
     pub account: ContractAddress,

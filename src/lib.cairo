@@ -3,5 +3,9 @@ pub mod interfaces {
 }
 
 pub mod events {
-    // pub mod factory;
+    pub mod factory;
+}
+
+pub mod contracts {
+    pub mod rwax_factory;
 }
