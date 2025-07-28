@@ -1,20 +1,34 @@
-#[starknet::contract]
-pub mod fractionalization {
-    use rwax::events::factory;
-    use rwax::interfaces::irwa_factory;
-    use starknet::ContractAddress;
+use starknet::ContractAddress;
 
-    #[storage]
-    struct Storage {
-        rwax_token: ContractAddress,
-    }
+#[derive(Drop, starknet::Event)]
+pub struct AssetFractionalized {
+    #[key]
+    pub original_token_id: u256,
+    #[key]
+    pub rwa_token_address: ContractAddress,
+    #[key]
+    pub fractional_token_address: ContractAddress,
+    pub total_fractions: u256,
+    pub price_per_fraction: u256,
+    pub owner: ContractAddress,
+}
 
-    #[event]
-    #[derive(Copy, Drop, starknet::Event)]
-    pub enum Event {
-        AssetTokenized: factory::AssetTokenized,
-        AssetMetadataUpdated: factory::AssetMetadataUpdated,
-        TokenizerRoleGranted: factory::TokenizerRoleGranted,
-        TokenizerRoleRevoked: factory::TokenizerRoleRevoked,
-    }
+#[derive(Drop, starknet::Event)]
+pub struct AssetReconstructed {
+    #[key]
+    pub original_token_id: u256,
+    #[key]
+    pub rwa_token_address: ContractAddress,
+    #[key]
+    pub fractional_token_address: ContractAddress,
+    pub reconstructor: ContractAddress,
+}
+
+#[derive(Drop, starknet::Event)]
+pub struct EmergencyUnlock {
+    #[key]
+    pub original_token_id: u256,
+    #[key]
+    pub admin: ContractAddress,
+    pub fractional_token_address: ContractAddress,
 }
