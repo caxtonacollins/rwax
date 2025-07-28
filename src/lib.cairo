@@ -3,6 +3,6 @@ pub mod interfaces {
 }
 
 pub mod events {
-    pub mod factory;
+    // pub mod factory;
     pub mod fractionalization;
 }
