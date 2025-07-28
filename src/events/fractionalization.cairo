@@ -1,6 +1,6 @@
 use starknet::ContractAddress;
 
-#[derive(Drop, starknet::Event)]
+#[derive(Copy, Drop, starknet::Event)]
 pub struct AssetFractionalized {
     #[key]
     pub original_token_id: u256,
@@ -13,7 +13,7 @@ pub struct AssetFractionalized {
     pub owner: ContractAddress,
 }
 
-#[derive(Drop, starknet::Event)]
+#[derive(Copy, Drop, starknet::Event)]
 pub struct AssetReconstructed {
     #[key]
     pub original_token_id: u256,
@@ -24,7 +24,7 @@ pub struct AssetReconstructed {
     pub reconstructor: ContractAddress,
 }
 
-#[derive(Drop, starknet::Event)]
+#[derive(Copy, Drop, starknet::Event)]
 pub struct EmergencyUnlock {
     #[key]
     pub original_token_id: u256,
