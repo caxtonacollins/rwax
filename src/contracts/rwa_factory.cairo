@@ -1,12 +1,19 @@
-use rwax::interfaces::irwa_factory::IRWAFactory;
-use rwax::structs::asset::AssetData;
-use starknet::ContractAddress;
-
-const TOKENIZER_ROLE: felt252 = selector!("TOKENIZER_ROLE");
-
 #[starknet::contract]
-mod RWAFactory {
-    // === Component Mixins ===
+pub mod RWAFactory {
+    use starknet::storage::StoragePointerWriteAccess;
+use openzeppelin::access::accesscontrol::AccessControlComponent;
+    use openzeppelin::introspection::src5::SRC5Component;
+    use openzeppelin::token::erc721::{ERC721Component, ERC721HooksEmptyImpl};
+    use rwax::events::factory::{
+        AssetMetadataUpdated, AssetTokenized, TokenizerRoleGranted, TokenizerRoleRevoked,
+    };
+    use rwax::interfaces::irwa_factory::IRWAFactory;
+    use rwax::structs::asset::AssetData;
+    use starknet::ContractAddress;
+    use starknet::storage::Map;
+
+    const TOKENIZER_ROLE: felt252 = selector!("TOKENIZER_ROLE");
+
     component!(path: ERC721Component, storage: erc721, event: ERC721Event);
     component!(path: SRC5Component, storage: src5, event: SRC5Event);
     component!(path: AccessControlComponent, storage: accesscontrol, event: AccessControlEvent);
@@ -53,60 +60,58 @@ mod RWAFactory {
     // === Constructor Skeleton ===
     #[constructor]
     fn constructor(
-        ref self: ContractState,
-        name: ByteArray,
-        symbol: ByteArray,
-        base_uri: ByteArray,
-        admin: ContractAddress,
-        fractionalization_module: ContractAddress,
+        ref self: ContractState, admin: ContractAddress, fractionalization_module: ContractAddress,
     ) {
+        // let name: ByteArray = "RWAToken";
+        // let symbol: ByteArray = "RWA";
+        // let base_uri: ByteArray = "https://api.example.com/";
         // TODO: Initialize components
-        unimplemented!();
+
+        // Initialize AccessControl component and grant admin role to the admin
+        self.accesscontrol.initializer();
+        self.accesscontrol.grant_role(TOKENIZER_ROLE, admin);
     }
 
     // === IRWAFactory Interface Implementation ===
     #[abi(embed_v0)]
     impl RWAFactoryImpl of IRWAFactory<ContractState> {
-        fn tokenize_asset(
-            ref self: ContractState, owner: ContractAddress, asset_data: AssetData,
-        ) -> u256 {
-            // TODO
-            unimplemented!();
-        }
+        // fn tokenize_asset(
+        //     ref self: ContractState, owner: ContractAddress, asset_data: AssetData,
+        // ) -> u256 {
+        //     // TODO
+        //     unimplemented!();
+        // }
 
-        fn update_asset_metadata(ref self: ContractState, token_id: u256, new_data: AssetData) {
-            // TODO
-            unimplemented!();
-        }
+        // fn update_asset_metadata(ref self: ContractState, token_id: u256, new_data: AssetData) {
+        //     // TODO
+        //     unimplemented!();
+        // }
 
         fn grant_tokenizer_role(ref self: ContractState, account: ContractAddress) {
-            // TODO
-            unimplemented!();
+            self.accesscontrol.grant_role(TOKENIZER_ROLE, account);
         }
 
-        fn revoke_tokenizer_role(ref self: ContractState, account: ContractAddress) {
-            // TODO
-            unimplemented!();
-        }
+        // fn revoke_tokenizer_role(ref self: ContractState, account: ContractAddress) {
+        //     // TODO
+        //     unimplemented!();
+        // }
 
-        fn get_asset_data(self: @ContractState, token_id: u256) -> felt252 {
-            // TODO
-            unimplemented!();
-        }
+        // fn get_asset_data(self: @ContractState, token_id: u256) -> felt252 {
+        //     // TODO
+        //     unimplemented!();
+        // }
 
         fn has_tokenizer_role(self: @ContractState, account: ContractAddress) -> bool {
-            // TODO
-            unimplemented!();
+            self.accesscontrol.has_role(TOKENIZER_ROLE, account)
         }
+        // fn get_total_assets(self: @ContractState) -> u256 {
+    //     // TODO
+    //     unimplemented!();
+    // }
 
-        fn get_total_assets(self: @ContractState) -> u256 {
-            // TODO
-            unimplemented!();
-        }
-
-        fn get_fractionalization_module(self: @ContractState) -> ContractAddress {
-            // TODO
-            unimplemented!();
-        }
+        // fn get_fractionalization_module(self: @ContractState) -> ContractAddress {
+    //     // TODO
+    //     unimplemented!();
+    // }
     }
 }
